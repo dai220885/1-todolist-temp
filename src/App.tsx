@@ -1,26 +1,23 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './App.css';
+import TodoList, {TaskType} from "./TodoList";
 
-function App() {
+const App: FC = (): JSX.Element => {
+    //BLL:
+    const todoListTitle: string = "What to learn";
+    const tasks: Array<TaskType> = [
+        {id: 1, title: "HTML, CSS", isDone: true},
+        {id: 2, title: "Js", isDone: true},
+        {id: 3, title: "React and Redux", isDone: false},
+        {id: 4, title: "Node.js", isDone: false},
+    ]
+
+    //UI:
     return (
         <div className="App">
-            <div>
-                <h3>What to learn</h3>
-                <div>
-                    <input/>
-                    <button>+</button>
-                </div>
-                <ul>
-                    <li><input type="checkbox" checked={true}/> <span>HTML&CSS</span></li>
-                    <li><input type="checkbox" checked={true}/> <span>JS</span></li>
-                    <li><input type="checkbox" checked={false}/> <span>React</span></li>
-                </ul>
-                <div>
-                    <button>All</button>
-                    <button>Active</button>
-                    <button>Completed</button>
-                </div>
-            </div>
+            <TodoList title={todoListTitle} tasks={tasks}/>
+            <TodoList title={todoListTitle} tasks={tasks}/>
+            <TodoList title={todoListTitle} tasks={tasks}/>
         </div>
     );
 }
