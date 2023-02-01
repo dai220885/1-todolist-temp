@@ -1,9 +1,11 @@
 import React, {FC} from 'react';
-import TaskList from "./TaskList";
+import {StudentsList, TaskList} from "./TaskList";
 
-type TodoListPropsType = {
+export type TodoListPropsType = {
     title: string
     tasks: Array<TaskType>
+    students:Array<string>
+
     //tasks: TaskType[] //то же самое, что и Array<TaskType>
 }
 
@@ -14,9 +16,6 @@ export type TaskType = {
 }
 
 const TodoList: FC<TodoListPropsType>= (props) : JSX.Element => {
-
-
-
     return (
         <div>
             <h3>{props.title}</h3>
@@ -25,6 +24,9 @@ const TodoList: FC<TodoListPropsType>= (props) : JSX.Element => {
                 <button>+</button>
             </div>
                 <TaskList tasks={props.tasks}/>
+            <div>
+            </div>
+                <StudentsList students={props.students}/>
             <div>
                 <button>All</button>
                 <button>Active</button>
