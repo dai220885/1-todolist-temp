@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEvent} from 'react';
 import {TaskType, TodoListPropsType} from "./TodoList";
 
 
@@ -9,6 +9,7 @@ import {TaskType, TodoListPropsType} from "./TodoList";
 
 type StudentListType = {
     students: Array<string>
+    callBack: (value: string)=>void
 }
 
 type TaskListType = {
@@ -36,17 +37,24 @@ export const TaskList: FC<TaskListType>= (props) : JSX.Element => {
 
 export const StudentsList: FC<StudentListType>= (props) : JSX.Element => {
 
+    const onClickHandler =(e: MouseEvent<HTMLSelectElement>)=>{
+        //debugger
+        console.log(e.currentTarget.value)
+        return props.callBack(e.currentTarget.value)} // передаем выбранного студента в коллБэк функцию
+
+    //studentItems будет массив jsx элементов (JSX.Element[]) или одиночный jsx элемент (JSX.Element).
+    // если пришедший в пропсах массив студентов имеет длину(не пустой), то применяем к нему метод map, иначе возвнащаем спан с надписью, что список студентов пуст (Your studentList is empty)
     const studentItems: JSX.Element[] | JSX.Element = props.students.length
         ? props.students.map((student) =>{
             return(
-                        <option>{student}</option>
-
+                        <option>{student}</option>//оборачиваем каждого студента из массива в тег option, чтобы потом "засунуть" их в выпадающий список
             )
         })
         : <span>Your studentList is empty</span>
 
     return (
-        <select>
+        // с помощью онКлик получаем выбранного студента (имя которого находится в соответствующем теге option, полученном после пропускания массива students через метод map
+        <select onClick={onClickHandler}>
             {studentItems}
         </select>
     );
