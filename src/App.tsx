@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import './App.css';
 import TodoList, {TaskType, TodoListPropsType} from "./TodoList";
 
@@ -6,7 +6,7 @@ const App: FC = (): JSX.Element => {
     //BLL:
 
 
-    const data1: TodoListPropsType=  {
+    const data1 =  {
         title: "What to do",
         tasks: [
             {id: 1, title: "HTML&CSS2", isDone: true},
@@ -60,7 +60,7 @@ const App: FC = (): JSX.Element => {
             'Ralphie Hebert',
         ]
     }
-    const data2: TodoListPropsType = {
+    const data2 = {
         title: "What to learn",
         tasks: [
             {id: 1, title: "HTML&CSS", isDone: true},
@@ -126,12 +126,15 @@ const App: FC = (): JSX.Element => {
         {id: 3, title: "React and Redux", isDone: false},
         {id: 4, title: "Node.js", isDone: false},
     ]
+    let [selectedStudent, setSelectedStudent] = useState('') //useState для хранения имени студента, выбранного в выпадающем списке
 
     //UI:
     return (
+
         <div className="App">
-            <TodoList title={data1.title} tasks={data1.tasks} students={data1.students}/>
-            <TodoList title={data2.title} tasks={data2.tasks} students={data2.students}/>
+            <div>hello, {selectedStudent}</div>
+            <TodoList title={data1.title} tasks={data1.tasks} students={data1.students} callBack={setSelectedStudent}/>
+            <TodoList title={data2.title} tasks={data2.tasks} students={data2.students} callBack={setSelectedStudent}/>
 
         </div>
     );
