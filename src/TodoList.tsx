@@ -5,6 +5,7 @@ export type TodoListPropsType = {
     title: string
     tasks: Array<TaskType>
     students:Array<string>
+    callBack: (element: string)=> void
 
     //tasks: TaskType[] //то же самое, что и Array<TaskType>
 }
@@ -26,7 +27,7 @@ const TodoList: FC<TodoListPropsType>= (props) : JSX.Element => {
                 <TaskList tasks={props.tasks}/>
             <div>
             </div>
-                <StudentsList students={props.students}/>
+                <StudentsList students={props.students} callBack={props.callBack}/>
             <div>
                 <button>All</button>
                 <button>Active</button>
